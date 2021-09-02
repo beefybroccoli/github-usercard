@@ -5,16 +5,6 @@ import axios from "axios";
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-const API_URL = "https://api.github.com/users/";
-const my_username = "beefybroccoli";
-axios
-  .get(API_URL + my_username)
-  .then((response) => {
-    console.log(response.data);
-  })
-  .catch((error) => {
-    console.log("error: ", error);
-  });
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -61,7 +51,6 @@ const followersArray = [];
       </div>
     </div>
 */
-
 
 /*
   List of LS Instructors Github username's:
