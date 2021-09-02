@@ -6,7 +6,7 @@ import axios from "axios";
 */
 const API_URL = "https://api.github.com/users/";
 const my_username = "beefybroccoli";
-const api_data = axios
+const my_user_data = axios
   .get(API_URL + my_username)
   .then((response) => {
     // console.log(response.data);
@@ -28,22 +28,21 @@ const api_data = axios
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
-
-if (api_data !== null) {
-  // console.log("api_data = ", api_data);
-  api_data.then((data) => {
+my_user_data &&
+  my_user_data.then((data) => {
     //console log data
     console.log("data = ", data);
 
-    //create a user card
-    const my_card = Create_User_Card(data);
-    console.log(`line 40 my_card = `, my_card);
+    // //create a user card
+    // const my_card = Create_User_Card(data);
+    // console.log(`line 40 my_card = `, my_card);
 
-    //add to DOM tree
-    const div_cards = document.querySelector(".cards");
-    div_cards.appendChild(my_card);
+    // //add to DOM tree
+    // const div_cards = document.querySelector(".cards");
+    // div_cards.appendChild(my_card);
+
+    helper_create_UserCard_and_add_to_DOM(data);
   });
-}
 
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
@@ -91,48 +90,57 @@ function Create_User_Card({
   //Step 1 - create tags
   //--------------------------------------------------------------------------
   // <div class="card">
-  const div_card = create_tag({ type: "div", classArray: ["card"] });
+  const div_card = helper_create_tag({ type: "div", classArray: ["card"] });
   // <img src={image url of user} />
-  const tag_img_ = create_tag({ type: "img", src: avatar_url });
+  const tag_img_ = helper_create_tag({ type: "img", src: avatar_url });
   // <div class="card-info">
-  const div_cardInfo = create_tag({ type: "div", classArray: ["card-info"] });
+  const div_cardInfo = helper_create_tag({
+    type: "div",
+    classArray: ["card-info"],
+  });
   // <h3 class="name">{users name}</h3>
-  const tag_h3 = create_tag({
+  const tag_h3 = helper_create_tag({
     type: "h3",
     classArray: ["name"],
     textContent: login,
   });
   // <p class="username">{users name}</p>
-  const tag_p_userName = create_tag({
+  const tag_p_userName = helper_create_tag({
     type: "p",
     classArray: ["username"],
     textContent: login,
   });
   // <p>Location: {users location}</p>
-  const tag_p_location = create_tag({
+  const tag_p_location = helper_create_tag({
     type: "p",
     textContent: `Location: ${location}`,
   });
   // <p>Profile: </p>
-  const tag_p_profile = create_tag({ type: "p", textContent: "Profile:" });
+  const tag_p_profile = helper_create_tag({
+    type: "p",
+    textContent: "Profile:",
+  });
   // <a href={address to users github page}>{address to users github page}</a>
-  const tag_anchor = create_tag({
+  const tag_anchor = helper_create_tag({
     type: "a",
     href: html_url,
     textContent: html_url,
   });
   // <p>Followers: {users followers count}</p>
-  const tag_p_followers = create_tag({
+  const tag_p_followers = helper_create_tag({
     type: "p",
     textContent: "Followers: " + followers,
   });
   // <p>Following: {users following count}</p>
-  const tag_p_follwing = create_tag({
+  const tag_p_follwing = helper_create_tag({
     type: "p",
     textContent: "Following: " + following,
   });
   // <p>Bio: {users bio}</p>
-  const tag_p_bio = create_tag({ type: "p", textContent: "Bio: " + bio });
+  const tag_p_bio = helper_create_tag({
+    type: "p",
+    textContent: "Bio: " + bio,
+  });
 
   //--------------------------------------------------------------------------
   //Step 2 - add childs to parent
@@ -185,13 +193,27 @@ function Create_User_Card({
   return div_card;
 }
 
-function create_tag({ type, textContent, classArray, src, href }) {
+function helper_create_tag({ type, textContent, classArray, src, href }) {
   const temp_tag = document.createElement(type);
   temp_tag.textContent = textContent;
   classArray && temp_tag.classList.add(...classArray);
   temp_tag.src = src;
   temp_tag.href = href;
   return temp_tag;
+}
+
+/**
+ * create UserCard and add to DOM tree
+ * @param {*} user_object
+ */
+function helper_create_UserCard_and_add_to_DOM(user_object) {
+  //create a user card
+  const my_card = Create_User_Card(user_object);
+  console.log(`create_UserCard_and_add_to_DOM - my_card = `, my_card);
+
+  //add to DOM tree
+  const div_cards = document.querySelector(".cards");
+  div_cards.appendChild(my_card);
 }
 
 /*
@@ -201,4 +223,19 @@ function create_tag({ type, textContent, classArray, src, href }) {
     justsml
     luishrd
     bigknell
+
+  const API_URL = "https://api.github.com/users/";
+  const my_username = "beefybroccoli";
 */
+["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"].forEach(
+  (username) => {
+    axios
+      .get(API_URL + username)
+      .then((response) => {
+        helper_create_UserCard_and_add_to_DOM(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+);
