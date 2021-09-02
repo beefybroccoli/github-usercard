@@ -69,7 +69,7 @@ function Create_User_Card({
   following,
 }) {
   //==========================================================================
-  //Step 1 - create tags
+  //                         Step 1 - create tags
   //==========================================================================
   // <div class="card">
   const div_card = helper_create_tag({ type: "div", classArray: ["card"] });
@@ -125,7 +125,7 @@ function Create_User_Card({
   });
 
   //==========================================================================
-  //Step 2 - add child to parent
+  //                         Step 2 - add child to parent
   //==========================================================================
   /*
     <p>Profile:
@@ -167,10 +167,8 @@ function Create_User_Card({
     div_card.appendChild(child);
   });
 
-  // console.log(`line 176, div_card = `, div_card);
-
   //==========================================================================
-  //Step 3 - return tag
+  //                         Step 3 - return tag
   //==========================================================================
   return div_card;
 } //end Create_User_Card function
@@ -203,13 +201,10 @@ function helper_create_UserCard_and_add_to_DOM(user_object) {
 */
 ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"].forEach(
   (each_userName) => {
-    axios
-      .get(Github_API_URL + each_userName)
-      .then((response) => {
-        helper_create_UserCard_and_add_to_DOM(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+    const data = helper_axios(Github_API_URL + each_userName);
+    data &&
+      data.then((data) => {
+        helper_create_UserCard_and_add_to_DOM(data);
       });
   } //end function
 ); //end forEach
