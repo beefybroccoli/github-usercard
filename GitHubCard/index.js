@@ -1,13 +1,14 @@
 import axios from "axios";
+import { helper_create_tag } from "../component/helper";
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-const API_URL = "https://api.github.com/users/";
+const Github_API_URL = "https://api.github.com/users/";
 const my_username = "beefybroccoli";
 const my_user_data = axios
-  .get(API_URL + my_username)
+  .get(Github_API_URL + my_username)
   .then((response) => {
     // console.log(response.data);
     return response.data;
@@ -182,20 +183,7 @@ function Create_User_Card({
   return div_card;
 }
 
-/**
- * create a html tag
- * @param {type, textContent, classArray, src, href} param0
- * @returns
- */
-function helper_create_tag({ type, textContent, classArray, src, href }) {
-  const temp_tag = document.createElement(type);
-  temp_tag.textContent = textContent;
-  classArray && temp_tag.classList.add(...classArray);
-  temp_tag.src = src;
-  temp_tag.href = href;
-  return temp_tag;
-} // end helper_create_tag
-
+//============================================================================
 /**
  * create UserCard and add to DOM tree
  * @param {*} user_object
@@ -225,7 +213,7 @@ function helper_create_UserCard_and_add_to_DOM(user_object) {
 ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"].forEach(
   (each_userName) => {
     axios
-      .get(API_URL + each_userName)
+      .get(Github_API_URL + each_userName)
       .then((response) => {
         helper_create_UserCard_and_add_to_DOM(response.data);
       })
