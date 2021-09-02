@@ -223,9 +223,9 @@ function helper_create_UserCard_and_add_to_DOM(user_object) {
   const my_username = "beefybroccoli";
 */
 ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"].forEach(
-  (username) => {
+  (each_userName) => {
     axios
-      .get(API_URL + username)
+      .get(API_URL + each_userName)
       .then((response) => {
         helper_create_UserCard_and_add_to_DOM(response.data);
       })
