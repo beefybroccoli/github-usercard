@@ -1,5 +1,5 @@
 import axios from "axios";
-import { helper_create_tag } from "../component/helper";
+import { helper_create_tag, helper_axios } from "../component/helper";
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
@@ -7,15 +7,7 @@ import { helper_create_tag } from "../component/helper";
 */
 const Github_API_URL = "https://api.github.com/users/";
 const my_username = "beefybroccoli";
-const my_user_data = axios
-  .get(Github_API_URL + my_username)
-  .then((response) => {
-    // console.log(response.data);
-    return response.data;
-  })
-  .catch((error) => {
-    console.log("error: ", error);
-  });
+const my_user_data = helper_axios(Github_API_URL + my_username);
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -181,7 +173,7 @@ function Create_User_Card({
   //Step 3 - return tag
   //==========================================================================
   return div_card;
-}
+} //end Create_User_Card function
 
 //============================================================================
 /**
@@ -191,12 +183,11 @@ function Create_User_Card({
 function helper_create_UserCard_and_add_to_DOM(user_object) {
   //create a user card
   const my_card = Create_User_Card(user_object);
-  // console.log(`create_UserCard_and_add_to_DOM - my_card = `, my_card);
 
   //add to DOM tree
   const div_cards = document.querySelector(".cards");
   div_cards.appendChild(my_card);
-} //end helper_create_UserCard_and_add_to_DOM
+} // end helper_create_UserCard_and_add_to_DOM
 
 //=========================================================================
 /*
@@ -220,5 +211,5 @@ function helper_create_UserCard_and_add_to_DOM(user_object) {
       .catch((error) => {
         console.log(error);
       });
-  }
-);
+  } //end function
+); //end forEach

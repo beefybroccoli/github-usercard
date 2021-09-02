@@ -21,7 +21,7 @@ export function helper_create_tag({
 
 export function helper_axios(API_URL) {
   return axios
-    .get(API_URL)
+    .get(Github_API_URL + my_username)
     .then((response) => {
       // console.log(response.data);
       return response.data;
