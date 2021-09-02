@@ -30,17 +30,6 @@ const my_user_data = axios
 */
 my_user_data &&
   my_user_data.then((data) => {
-    //console log data
-    console.log("data = ", data);
-
-    // //create a user card
-    // const my_card = Create_User_Card(data);
-    // console.log(`line 40 my_card = `, my_card);
-
-    // //add to DOM tree
-    // const div_cards = document.querySelector(".cards");
-    // div_cards.appendChild(my_card);
-
     helper_create_UserCard_and_add_to_DOM(data);
   });
 
@@ -86,9 +75,9 @@ function Create_User_Card({
   followers,
   following,
 }) {
-  //--------------------------------------------------------------------------
+  //==========================================================================
   //Step 1 - create tags
-  //--------------------------------------------------------------------------
+  //==========================================================================
   // <div class="card">
   const div_card = helper_create_tag({ type: "div", classArray: ["card"] });
   // <img src={image url of user} />
@@ -142,9 +131,9 @@ function Create_User_Card({
     textContent: "Bio: " + bio,
   });
 
-  //--------------------------------------------------------------------------
-  //Step 2 - add childs to parent
-  //--------------------------------------------------------------------------
+  //==========================================================================
+  //Step 2 - add child to parent
+  //==========================================================================
   /*
     <p>Profile:
       <a href={address to users github page}>{address to users github page}</a>
@@ -185,14 +174,19 @@ function Create_User_Card({
     div_card.appendChild(child);
   });
 
-  console.log(`line 176, div_card = `, div_card);
+  // console.log(`line 176, div_card = `, div_card);
 
-  //--------------------------------------------------------------------------
+  //==========================================================================
   //Step 3 - return tag
-  //--------------------------------------------------------------------------
+  //==========================================================================
   return div_card;
 }
 
+/**
+ * create a html tag
+ * @param {type, textContent, classArray, src, href} param0
+ * @returns
+ */
 function helper_create_tag({ type, textContent, classArray, src, href }) {
   const temp_tag = document.createElement(type);
   temp_tag.textContent = textContent;
@@ -200,7 +194,7 @@ function helper_create_tag({ type, textContent, classArray, src, href }) {
   temp_tag.src = src;
   temp_tag.href = href;
   return temp_tag;
-}
+} // end helper_create_tag
 
 /**
  * create UserCard and add to DOM tree
@@ -209,13 +203,14 @@ function helper_create_tag({ type, textContent, classArray, src, href }) {
 function helper_create_UserCard_and_add_to_DOM(user_object) {
   //create a user card
   const my_card = Create_User_Card(user_object);
-  console.log(`create_UserCard_and_add_to_DOM - my_card = `, my_card);
+  // console.log(`create_UserCard_and_add_to_DOM - my_card = `, my_card);
 
   //add to DOM tree
   const div_cards = document.querySelector(".cards");
   div_cards.appendChild(my_card);
-}
+} //end helper_create_UserCard_and_add_to_DOM
 
+//=========================================================================
 /*
   List of LS Instructors Github username's:
     tetondan
