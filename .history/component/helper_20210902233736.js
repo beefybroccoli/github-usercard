@@ -28,7 +28,6 @@ export function helper_create_tag_2(object) {
     for (let key of Object.keys(object)) {
       console.log(`${key} = ${object[key]}`);
     }
-    return temp_tag;
   } catch (error) {
     console.log(error);
   }
