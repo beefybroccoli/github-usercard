@@ -33,11 +33,8 @@ export function helper_create_tag_2(object) {
         object.classArray && temp_tag.classList.add(...object.classArray);
       } else if (key_array.includes(key)) {
         console.log(`${key} = ${object[key]}`);
-
-        //the below lines does not work
-        // temp_tag.setAttribute(key, object[key]);
-
-        //the below lines does not work
+        
+        // temp_tag.key = object[key];
         // temp_tag.key = object[key];
       }
     }

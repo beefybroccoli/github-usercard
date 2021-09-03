@@ -34,10 +34,8 @@ export function helper_create_tag_2(object) {
       } else if (key_array.includes(key)) {
         console.log(`${key} = ${object[key]}`);
 
-        //the below lines does not work
-        // temp_tag.setAttribute(key, object[key]);
-
-        //the below lines does not work
+        //the below lines 
+        // temp_tag.key = object[key];
         // temp_tag.key = object[key];
       }
     }
