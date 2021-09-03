@@ -22,22 +22,22 @@ export function helper_create_tag({
 
 export function helper_create_tag_2(object) {
   try {
-    let temp_tag = null;
-    const key_array = ["textContent", "src", "href"];
-    temp_tag = document.createElement(object.type);
-    console.log("object.type = ", object.type);
+    const [type, textContent, classArray, src, href] = object;
+
+    let temp_tag = document.createElement(type);
+    classArray && temp_tag.classList.add(...classArray);
+
     for (let key of Object.keys(object)) {
       // console.log(`${key} = ${object[key]}`);
-      if (key === "classArray") {
-        console.log(`${key} = ${object[key]}`);
-        object.classArray && temp_tag.classList.add(...object.classArray);
-      } else if (key_array.includes(key)) {
-        console.log(`${key} = ${object[key]}`);
-        // temp_tag.key = object[key];
-        // temp_tag.key = object[key];
+      if ( key === "type") {
+
       }
     }
-    //return the result tag
+
+    temp_tag.textContent = textContent;
+    temp_tag.src = src;
+    temp_tag.href = href;
+
     return temp_tag;
   } catch (error) {
     console.log(error);

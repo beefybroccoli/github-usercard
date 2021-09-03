@@ -1,4 +1,8 @@
-import { helper_create_tag, helper_axios } from "../component/helper";
+import {
+  helper_create_tag,
+  helper_axios,
+  helper_create_tag_2,
+} from "../component/helper";
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
@@ -179,7 +183,9 @@ function Create_User_Card({
  */
 function helper_create_UserCard_and_add_to_DOM(user_object) {
   //create a user card
-  const my_card = Create_User_Card(user_object);
+  // const my_card = Create_User_Card(user_object);
+
+  const my_card = helper_create_tag_2(user_object);
 
   //add to DOM tree
   const div_cards = document.querySelector(".cards");

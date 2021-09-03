@@ -5,7 +5,7 @@ import axios from "axios";
  * @param {type, textContent, classArray, src, href} param0
  * @returns
  */
-export function helper_create_tag({
+export function helper_create_tag_2({
   type,
   textContent,
   classArray,

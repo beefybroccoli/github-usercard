@@ -5,7 +5,7 @@ import axios from "axios";
  * @param {type, textContent, classArray, src, href} param0
  * @returns
  */
-export function helper_create_tag({
+export function helper_create_tag_2({
   type,
   textContent,
   classArray,
@@ -20,7 +20,7 @@ export function helper_create_tag({
   return temp_tag;
 } // end helper_create_tag
 
-export function helper_create_tag_2(object) {
+export function helper_create_tag(object) {
   try {
     let temp_tag = null;
     const key_array = ["textContent", "src", "href"];
@@ -34,7 +34,7 @@ export function helper_create_tag_2(object) {
       } else if (key_array.includes(key)) {
         console.log(`${key} = ${object[key]}`);
         // temp_tag.key = object[key];
-        // temp_tag.key = object[key];
+        temp_tag.setAtt
       }
     }
     //return the result tag

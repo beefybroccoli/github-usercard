@@ -20,24 +20,29 @@ export function helper_create_tag({
   return temp_tag;
 } // end helper_create_tag
 
-export function helper_create_tag_2(object) {
+export function helper_create_tag({
+  type,
+  textContent,
+  classArray,
+  src,
+  href,
+}) {
+  const temp_tag = document.createElement(type);
+  temp_tag.textContent = textContent;
+  classArray && temp_tag.classList.add(...classArray);
+  temp_tag.src = src;
+  temp_tag.href = href;
+  return temp_tag;
+} // end helper_create_tag
+
+export function helper_create_tag_3(object) {
+  let temp_tag = null;
+
   try {
-    let temp_tag = null;
-    const key_array = ["textContent", "src", "href"];
     temp_tag = document.createElement(object.type);
-    console.log("object.type = ", object.type);
     for (let key of Object.keys(object)) {
-      // console.log(`${key} = ${object[key]}`);
-      if (key === "classArray") {
-        console.log(`${key} = ${object[key]}`);
-        object.classArray && temp_tag.classList.add(...object.classArray);
-      } else if (key_array.includes(key)) {
-        console.log(`${key} = ${object[key]}`);
-        // temp_tag.key = object[key];
-        // temp_tag.key = object[key];
-      }
+      console.log(`${key} = ${object[key]}`);
     }
-    //return the result tag
     return temp_tag;
   } catch (error) {
     console.log(error);
