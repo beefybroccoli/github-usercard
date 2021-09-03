@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-finally */
 import axios from "axios";
 /**
  * create a html tag
@@ -25,14 +24,20 @@ export function helper_create_tag_2(object) {
 
   try {
     temp_tag = document.createElement(object.type);
-    for (let key of Object.keys(object)) {
-      console.log(`${key} = ${object[key]}`);
+    for(key of object.key){
+      console.log(`${key} = ${object[key]`)
     }
   } catch (error) {
     console.log(error);
   } finally {
     return temp_tag;
   }
+  const temp_tag = document.createElement(type);
+  temp_tag.textContent = textContent;
+  classArray && temp_tag.classList.add(...classArray);
+  temp_tag.src = src;
+  temp_tag.href = href;
+  return temp_tag;
 } // end helper_create_tag
 
 export function helper_axios(API_URL) {

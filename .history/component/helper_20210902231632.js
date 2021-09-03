@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-finally */
 import axios from "axios";
 /**
  * create a html tag

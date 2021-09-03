@@ -1,8 +1,4 @@
-import {
-  helper_create_tag,
-  helper_axios,
-  helper_create_tag_2,
-} from "../component/helper";
+import { helper_create_tag, helper_axios } from "../component/helper";
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):

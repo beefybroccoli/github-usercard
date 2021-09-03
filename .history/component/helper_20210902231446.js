@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-finally */
 import axios from "axios";
 /**
  * create a html tag
@@ -25,7 +24,7 @@ export function helper_create_tag_2(object) {
 
   try {
     temp_tag = document.createElement(object.type);
-    for (let key of Object.keys(object)) {
+    for (let key of object.key) {
       console.log(`${key} = ${object[key]}`);
     }
   } catch (error) {
